@@ -58,6 +58,7 @@ public class CoreApplier {
             return new CoreEmptyApplier();
         }
         CoreApplierType[] values = CoreApplierType.values();
+        //noinspection ConstantConditions
         if (values != null && values.length > 0) {
             for (CoreApplierType coreApplierType : values) {
                 if (coreApplierType.getName().equalsIgnoreCase(type)) {

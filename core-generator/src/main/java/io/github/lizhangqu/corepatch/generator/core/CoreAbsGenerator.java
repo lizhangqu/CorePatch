@@ -17,8 +17,8 @@ import io.github.lizhangqu.corepatch.generator.GeneratorException;
  * @since 2017-10-02 22:02
  */
 public abstract class CoreAbsGenerator implements Generator {
-    protected static final int DEFLATER_LEVEL = 9;
-    protected static final boolean DEFLATER_NO_WRAP = true;
+    protected static final int LEVEL = 9;
+    protected static final boolean NO_WRAP = true;
     protected static final int BUFFER_SIZE = 32768;
 
     private String getFileMD5(File file) {

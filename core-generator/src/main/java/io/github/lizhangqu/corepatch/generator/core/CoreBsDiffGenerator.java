@@ -52,7 +52,7 @@ final class CoreBsDiffGenerator extends CoreAbsGenerator {
         if (patchOutputStream instanceof DeflaterOutputStream) {
             compressedPatchOutputStream = (DeflaterOutputStream) patchOutputStream;
         } else {
-            compressor = new Deflater(DEFLATER_LEVEL, DEFLATER_NO_WRAP); // to compress the patch
+            compressor = new Deflater(LEVEL, NO_WRAP); // to compress the patch
             compressedPatchOutputStream =
                     new DeflaterOutputStream(patchOutputStream, compressor, BUFFER_SIZE);
         }
@@ -109,7 +109,7 @@ final class CoreBsDiffGenerator extends CoreAbsGenerator {
                 throw new GeneratorException("create patchFile failure");
             }
         }
-        Deflater compressor = new Deflater(DEFLATER_LEVEL, DEFLATER_NO_WRAP); // to compress the patch
+        Deflater compressor = new Deflater(LEVEL, NO_WRAP); // to compress the patch
         DeflaterOutputStream compressedPatchOutputStream = null;
         try {
             compressedPatchOutputStream =
