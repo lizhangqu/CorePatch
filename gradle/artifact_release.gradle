@@ -1,0 +1,282 @@
+apply plugin: 'maven-publish'
+apply plugin: 'com.jfrog.bintray'
+apply plugin: 'com.github.dcendents.android-maven'
+
+//compatible for java 8
+if (JavaVersion.current().isJava8Compatible()) {
+    allprojects {
+        tasks.withType(Javadoc) {
+            options.addStringOption('Xdoclint:none', '-quiet')
+        }
+    }
+}
+
+//whether contains snapshot in version
+def isReleaseBuild() {
+    return version.contains("SNAPSHOT") == false
+}
+
+//read form root project local.properties
+def readPropertyFromLocalProperties(String key) {
+    Properties properties = new Properties()
+    try {
+        properties.load(project.rootProject.file('local.properties').newDataInputStream())
+    } catch (Exception e) {
+        println("load local properties failed msg:${e.message}")
+    }
+    return properties.getProperty(key)
+}
+
+//get the value from gradle.properties, project.ext{} or local.properties
+def getReleaseRepositoryUrl() {
+    return hasProperty('RELEASE_REPOSITORY_URL') ? RELEASE_REPOSITORY_URL : readPropertyFromLocalProperties('RELEASE_REPOSITORY_URL')
+}
+
+def getSnapshotRepositoryUrl() {
+    return hasProperty('SNAPSHOT_REPOSITORY_URL') ? SNAPSHOT_REPOSITORY_URL : readPropertyFromLocalProperties('SNAPSHOT_REPOSITORY_URL')
+}
+
+def getReleaseRepositoryUsername() {
+    return hasProperty('RELEASE_REPOSITORY_USERNAME') ? RELEASE_REPOSITORY_USERNAME : readPropertyFromLocalProperties('RELEASE_REPOSITORY_USERNAME')
+}
+
+def getReleaseRepositoryPassword() {
+    return hasProperty('RELEASE_REPOSITORY_PASSWORD') ? RELEASE_REPOSITORY_PASSWORD : readPropertyFromLocalProperties('RELEASE_REPOSITORY_PASSWORD')
+}
+
+def getSnapshotRepositoryUsername() {
+    return hasProperty('SNAPSHOT_REPOSITORY_USERNAME') ? SNAPSHOT_REPOSITORY_USERNAME : readPropertyFromLocalProperties('SNAPSHOT_REPOSITORY_USERNAME')
+}
+
+def getSnapshotRepositoryPassword() {
+    return hasProperty('SNAPSHOT_REPOSITORY_PASSWORD') ? SNAPSHOT_REPOSITORY_PASSWORD : readPropertyFromLocalProperties('SNAPSHOT_REPOSITORY_PASSWORD')
+}
+
+def getBintrayUser() {
+    return hasProperty('BINTRAY_USER') ? BINTRAY_USER : readPropertyFromLocalProperties('BINTRAY_USER')
+}
+
+def getBintrayKey() {
+    return hasProperty('BINTRAY_APIKEY') ? BINTRAY_APIKEY : readPropertyFromLocalProperties('BINTRAY_APIKEY')
+}
+
+//force Java/JavaDoc encode with UTF-8
+tasks.withType(JavaCompile) {
+    options.encoding = "UTF-8"
+}
+
+// Android libraries
+if (project.hasProperty("android")) {
+    task androidJavadocs(type: Javadoc) {
+        source = android.sourceSets.main.java.srcDirs
+        classpath += configurations.compile
+        classpath += configurations.provided
+        ext.androidJar = "${android.sdkDirectory}/platforms/${android.compileSdkVersion}/android.jar"
+        classpath += files(ext.androidJar)
+        classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+
+    }
+
+    task androidJavaDocsJar(type: Jar, dependsOn: androidJavadocs) {
+        classifier = 'javadoc'
+        from androidJavadocs.getDestinationDir()
+    }
+
+    task androidSourcesJar(type: Jar) {
+        classifier = 'sources'
+        from android.sourceSets.main.java.srcDirs
+    }
+
+    artifacts {
+        archives androidSourcesJar, androidJavaDocsJar
+    }
+} else {
+    task javaSourcesJar(type: Jar, dependsOn: classes) {
+        classifier = 'sources'
+        from sourceSets.main.allSource
+    }
+
+    task javaDocJar(type: Jar, dependsOn: javadoc) {
+        classifier = 'javadoc'
+        from javadoc.getDestinationDir()
+    }
+
+    artifacts {
+        archives javaSourcesJar, javaDocJar
+    }
+
+}
+
+////must specific the version and group, and can't use def
+group = POM_GROUP
+version = POM_VERSION
+archivesBaseName = POM_ARTIFACT_ID
+
+//if you need to custom, close the comment
+//publishing {
+//    publications {
+//        maven(MavenPublication) {
+//            groupId POM_GROUP
+//            artifactId POM_ARTIFACT_ID
+//            version POM_VERSION
+//
+//            if (project.hasProperty("android")) {
+//                artifact androidSourcesJar
+//                artifact androidJavaDocsJar
+//                // Tell maven to prepare the generated "*.aar" file for publishing
+//                artifact("$buildDir/outputs/aar/${project.getName()}-release.aar")
+//            } else {
+//                if (plugins.hasPlugin('war')) {
+//                    from components.web
+//                } else {
+//                    from components.java
+//                }
+//                artifact javaSourcesJar
+//                artifact javaDocJar
+//            }
+//        }
+//    }
+//}
+
+//install to local config
+install {
+    repositories {
+        mavenInstaller {
+            pom.project {
+                // This generates POM.xml with proper parameters
+                groupId = POM_GROUP
+                artifactId = POM_ARTIFACT_ID
+                version = POM_VERSION
+
+                name POM_ARTIFACT_ID
+
+                url POM_WEBSITE_URL
+
+                scm {
+                    url POM_VCS_URL
+                    connection POM_VCS_URL
+                    developerConnection POM_VCS_URL
+                }
+
+                licenses {
+                    license {
+                        name POM_LICENSE
+                        url POM_LICENSE_URL
+                    }
+                }
+
+                developers {
+                    developer {
+                        id POM_DEVELOPER_ID
+                        name POM_DEVELOPER_NAME
+                        email POM_DEVELOPER_EMAIL
+                    }
+                }
+            }
+        }
+    }
+}
+
+//uploadArchives config
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            pom.groupId = POM_GROUP
+            pom.artifactId = POM_ARTIFACT_ID
+            pom.version = POM_VERSION
+
+            repository(url: getReleaseRepositoryUrl()) {
+                authentication(userName: getReleaseRepositoryUsername(), password: getReleaseRepositoryPassword())
+            }
+            snapshotRepository(url: getSnapshotRepositoryUrl()) {
+                authentication(userName: getSnapshotRepositoryUsername(), password: getSnapshotRepositoryPassword())
+            }
+
+            pom.project {
+                name POM_ARTIFACT_ID
+
+                url POM_WEBSITE_URL
+
+                scm {
+                    url POM_VCS_URL
+                    connection POM_VCS_URL
+                    developerConnection POM_VCS_URL
+                }
+
+                licenses {
+                    license {
+                        name POM_LICENSE
+                        url POM_LICENSE_URL
+                    }
+                }
+
+                developers {
+                    developer {
+                        id POM_DEVELOPER_ID
+                        name POM_DEVELOPER_NAME
+                        email POM_DEVELOPER_EMAIL
+                    }
+                }
+            }
+
+        }
+    }
+}
+
+//bintray config
+bintray {
+    user = getBintrayUser()
+    key = getBintrayKey()
+    configurations = ['archives']
+
+    pkg {
+        repo = 'maven'
+        name = POM_ARTIFACT_ID
+        desc = POM_DESCRIPTION
+        licenses = [POM_LICENSE]
+        websiteUrl = POM_WEBSITE_URL
+        vcsUrl = POM_VCS_URL
+        issueTrackerUrl = POM_ISSUE_URL
+        publicDownloadNumbers = true
+        publish = true
+    }
+}
+
+//must locate in the last
+afterEvaluate { project ->
+
+    def installTask = project.tasks.findByName("install")
+    def uploadArchivesTask = project.tasks.findByName("uploadArchives")
+    def bintrayUploadTask = project.tasks.findByName("bintrayUpload")
+    def publishMavenPublicationToMavenLocalTask = project.tasks.findByName("publishMavenPublicationToMavenLocal")
+    def assembleTask = project.tasks.findByName("assemble")
+
+    if (installTask) {
+        //reset install task group form other to maven
+        installTask.group = 'maven'
+    }
+    if (uploadArchivesTask) {
+        //reset uploadArchives task group form other to maven
+        uploadArchivesTask.group = 'maven'
+    }
+
+    if (installTask && uploadArchivesTask) {
+        def installAndUploadTask = project.task("installAndUpload")
+        installAndUploadTask.dependsOn installTask, uploadArchivesTask
+        installAndUploadTask.group = 'maven'
+    }
+    if (bintrayUploadTask && installTask) {
+        //let's bintrayUpload depensOn install
+        bintrayUploadTask.dependsOn installTask
+        //reset bintrayUpload task group form other to maven
+        bintrayUploadTask.group = 'maven'
+    }
+
+    //must use this way, if direct find the task we can't get the task
+    tasks.all { Task task ->
+        if (task.name.equalsIgnoreCase('publishMavenPublicationToMavenLocal')) {
+            task.dependsOn tasks.getByName('assemble')
+        }
+    }
+
+}

@@ -2,6 +2,8 @@ apply plugin: 'java'
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    testImplementation 'junit:junit:4.12'
+    testImplementation "junit:junit:${global_junitVersion}"
     compileOnly project(':api-generator')
 }
+
+apply from: project.rootProject.file('gradle/artifact_release.gradle')

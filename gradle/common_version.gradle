@@ -1,0 +1,18 @@
+ext {
+    //java
+    global_javaVersion = JavaVersion.VERSION_1_7
+    //build
+    global_compileSdkVersion = 26
+    global_buildToolsVersion = "26.0.1"
+    global_minSdkVersion = 14
+    global_targetSdkVersion = 26
+    //android library
+    global_androidSupportVersion = "26.1.0"
+    global_androidMultidexVersion = "1.0.1"
+    global_androidConstraintLayoutVersion = "1.0.2"
+    global_androidEspressoCoreVersion = "3.0.1"
+    //test library
+    global_junitVersion = "4.12"
+    //third library
+    global_okhttpVersion = "3.9.0"
+}

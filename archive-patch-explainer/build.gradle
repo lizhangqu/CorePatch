@@ -2,7 +2,9 @@
 apply plugin: 'java'
 
 dependencies {
-    testImplementation 'junit:junit:4.12'
+    testImplementation "junit:junit:${global_junitVersion}"
     compileOnly project(':archive-patch-generator')
     compileOnly project(':archive-patch-shared')
 }
+
+apply from: project.rootProject.file('gradle/artifact_release.gradle')
