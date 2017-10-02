@@ -46,4 +46,25 @@ public class CoreApplier {
         }
         return factory.create(type);
     }
+
+    /**
+     * 获得应用器
+     *
+     * @param type 类型
+     * @return 应用器，不为空
+     */
+    public Applier getApplier(String type) {
+        if (factory == null || type == null || type.length() == 0) {
+            return new CoreEmptyApplier();
+        }
+        CoreApplierType[] values = CoreApplierType.values();
+        if (values != null && values.length > 0) {
+            for (CoreApplierType coreApplierType : values) {
+                if (coreApplierType.getName().equalsIgnoreCase(type)) {
+                    return factory.create(coreApplierType);
+                }
+            }
+        }
+        return new CoreEmptyApplier();
+    }
 }

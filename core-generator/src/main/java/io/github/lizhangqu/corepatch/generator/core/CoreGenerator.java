@@ -46,4 +46,25 @@ public class CoreGenerator {
         }
         return factory.create(type);
     }
+
+    /**
+     * 获得生成器
+     *
+     * @param type 类型
+     * @return 生成器，不为空
+     */
+    public Generator getGenerator(String type) {
+        if (factory == null || type == null || type.length() == 0) {
+            return new CoreEmptyGenerator();
+        }
+        CoreGeneratorType[] values = CoreGeneratorType.values();
+        if (values != null && values.length > 0) {
+            for (CoreGeneratorType coreGeneratorType : values) {
+                if (coreGeneratorType.getName().equalsIgnoreCase(type)) {
+                    return factory.create(coreGeneratorType);
+                }
+            }
+        }
+        return new CoreEmptyGenerator();
+    }
 }
