@@ -4,6 +4,7 @@ package io.github.lizhangqu.corepatch.generator.core;
 import java.io.File;
 import java.io.OutputStream;
 
+import io.github.lizhangqu.corepatch.generator.Generator;
 import io.github.lizhangqu.corepatch.generator.GeneratorException;
 
 /**
@@ -13,7 +14,7 @@ import io.github.lizhangqu.corepatch.generator.GeneratorException;
  * @version V1.0
  * @since 2017-10-02 19:57
  */
-final class CoreEmptyGenerator extends CoreAbsGenerator {
+final class CoreEmptyGenerator implements Generator {
     @Override
     public boolean isSupport() {
         return false;
@@ -26,6 +27,11 @@ final class CoreEmptyGenerator extends CoreAbsGenerator {
 
     @Override
     public void generate(File oldFile, File newFile, File patchFile) throws GeneratorException {
+        throw new GeneratorException("not support");
+    }
+
+    @Override
+    public String calculateMD5(File patchFile) throws GeneratorException {
         throw new GeneratorException("not support");
     }
 
