@@ -62,7 +62,7 @@ public class CoreApplierTest {
         long start = System.currentTimeMillis();
         Applier applier = CoreApplier.getInstance().getApplier(CoreApplierType.BS);
         try {
-            applier.apply(new RandomAccessFile(oldFile, "r"), new FileInputStream(bsPatchFileToStream), new FileOutputStream(newBsPatchFileToStream));
+            applier.apply(oldFile, new FileInputStream(bsPatchFileToStream), new FileOutputStream(newBsPatchFileToStream));
             Assert.assertTrue(newBsPatchFileToStream.exists());
             Assert.assertTrue(newBsPatchFileToStream.length() > 0);
             String md5 = applier.calculateMD5(newBsPatchFileToStream);
@@ -102,7 +102,7 @@ public class CoreApplierTest {
         long start = System.currentTimeMillis();
         Applier applier = CoreApplier.getInstance().getApplier(CoreApplierType.ARCHIVE);
         try {
-            applier.apply(new RandomAccessFile(oldFile, "r"), new FileInputStream(archivePatchFileToStream), new FileOutputStream(newArchivePatchFileToStream));
+            applier.apply(oldFile, new FileInputStream(archivePatchFileToStream), new FileOutputStream(newArchivePatchFileToStream));
             Assert.assertTrue(newArchivePatchFileToStream.exists());
             Assert.assertTrue(newArchivePatchFileToStream.length() > 0);
             String md5 = applier.calculateMD5(newArchivePatchFileToStream);
