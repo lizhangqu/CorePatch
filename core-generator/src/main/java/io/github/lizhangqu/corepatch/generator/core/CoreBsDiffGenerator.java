@@ -6,13 +6,10 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.OutputStream;
-import java.io.RandomAccessFile;
 import java.util.zip.Deflater;
 import java.util.zip.DeflaterOutputStream;
 
-import io.github.lizhangqu.corepatch.generator.Generator;
 import io.github.lizhangqu.corepatch.generator.GeneratorException;
 
 /**
@@ -22,7 +19,7 @@ import io.github.lizhangqu.corepatch.generator.GeneratorException;
  * @version V1.0
  * @since 2017-10-02 19:38
  */
-final class CoreBsDiffGenerator implements Generator {
+final class CoreBsDiffGenerator extends CoreAbsGenerator {
     private static final int MATCH_LENGTH_BYTES = 16;
 
     @Override

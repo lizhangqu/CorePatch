@@ -34,6 +34,9 @@ public class CoreGeneratorTest {
             generator.generate(oldFile, newFile, bsPatchFileToFile);
             Assert.assertTrue(bsPatchFileToFile.exists());
             Assert.assertTrue(bsPatchFileToFile.length() > 0);
+            String md5 = generator.calculateMD5(bsPatchFileToFile);
+            System.out.println("md5:" + md5);
+            Assert.assertNotNull(md5);
         } catch (GeneratorException e) {
             e.printStackTrace();
             throw e;
@@ -52,6 +55,9 @@ public class CoreGeneratorTest {
             generator.generate(oldFile, newFile, new FileOutputStream(bsPatchFileToStream));
             Assert.assertTrue(bsPatchFileToStream.exists());
             Assert.assertTrue(bsPatchFileToStream.length() > 0);
+            String md5 = generator.calculateMD5(bsPatchFileToStream);
+            System.out.println("md5:" + md5);
+            Assert.assertNotNull(md5);
         } catch (GeneratorException e) {
             e.printStackTrace();
             throw e;
@@ -72,6 +78,9 @@ public class CoreGeneratorTest {
             generator.generate(oldFile, newFile, archivePatchFileToFile);
             Assert.assertTrue(archivePatchFileToFile.exists());
             Assert.assertTrue(archivePatchFileToFile.length() > 0);
+            String md5 = generator.calculateMD5(archivePatchFileToFile);
+            System.out.println("md5:" + md5);
+            Assert.assertNotNull(md5);
         } catch (GeneratorException e) {
             e.printStackTrace();
             throw e;
@@ -90,6 +99,9 @@ public class CoreGeneratorTest {
             generator.generate(oldFile, newFile, new FileOutputStream(archivePatchFileToStream));
             Assert.assertTrue(archivePatchFileToStream.exists());
             Assert.assertTrue(archivePatchFileToStream.length() > 0);
+            String md5 = generator.calculateMD5(archivePatchFileToStream);
+            System.out.println("md5:" + md5);
+            Assert.assertNotNull(md5);
         } catch (GeneratorException e) {
             e.printStackTrace();
             throw e;

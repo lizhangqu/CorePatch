@@ -40,4 +40,12 @@ public interface Generator {
      */
     void generate(File oldFile, File newFile, File patchFile) throws GeneratorException;
 
+    /**
+     * 计算md5
+     *
+     * @param patchFile 生成的patch文件
+     * @return md5
+     */
+    String calculateMD5(File patchFile) throws GeneratorException;
+
 }

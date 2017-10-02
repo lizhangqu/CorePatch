@@ -1,13 +1,9 @@
 package io.github.lizhangqu.corepatch.generator.core;
 
-import com.google.archivepatcher.generator.bsdiff.BsDiffPatchWriter;
 
 import java.io.File;
-import java.io.InputStream;
 import java.io.OutputStream;
-import java.io.RandomAccessFile;
 
-import io.github.lizhangqu.corepatch.generator.Generator;
 import io.github.lizhangqu.corepatch.generator.GeneratorException;
 
 /**
@@ -17,7 +13,7 @@ import io.github.lizhangqu.corepatch.generator.GeneratorException;
  * @version V1.0
  * @since 2017-10-02 19:57
  */
-final class CoreEmptyGenerator implements Generator {
+final class CoreEmptyGenerator extends CoreAbsGenerator {
     @Override
     public boolean isSupport() {
         return false;

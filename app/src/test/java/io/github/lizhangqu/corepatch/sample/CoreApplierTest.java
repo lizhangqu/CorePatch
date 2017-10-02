@@ -45,6 +45,9 @@ public class CoreApplierTest {
             applier.apply(oldFile, bsPatchFileToFile, newBsPatchFileToFile);
             Assert.assertTrue(newBsPatchFileToFile.exists());
             Assert.assertTrue(newBsPatchFileToFile.length() > 0);
+            String md5 = applier.calculateMD5(newBsPatchFileToFile);
+            System.out.println("md5:" + md5);
+            Assert.assertNotNull(md5);
         } catch (ApplierException e) {
             e.printStackTrace();
             throw e;
@@ -62,6 +65,9 @@ public class CoreApplierTest {
             applier.apply(new RandomAccessFile(oldFile, "r"), new FileInputStream(bsPatchFileToStream), new FileOutputStream(newBsPatchFileToStream));
             Assert.assertTrue(newBsPatchFileToStream.exists());
             Assert.assertTrue(newBsPatchFileToStream.length() > 0);
+            String md5 = applier.calculateMD5(newBsPatchFileToStream);
+            System.out.println("md5:" + md5);
+            Assert.assertNotNull(md5);
         } catch (ApplierException e) {
             e.printStackTrace();
             throw e;
@@ -79,6 +85,9 @@ public class CoreApplierTest {
             applier.apply(oldFile, archivePatchFileToFile, newArchivePatchFileToFile);
             Assert.assertTrue(newArchivePatchFileToFile.exists());
             Assert.assertTrue(newArchivePatchFileToFile.length() > 0);
+            String md5 = applier.calculateMD5(newArchivePatchFileToFile);
+            System.out.println("md5:" + md5);
+            Assert.assertNotNull(md5);
         } catch (ApplierException e) {
             e.printStackTrace();
             throw e;
@@ -96,6 +105,9 @@ public class CoreApplierTest {
             applier.apply(new RandomAccessFile(oldFile, "r"), new FileInputStream(archivePatchFileToStream), new FileOutputStream(newArchivePatchFileToStream));
             Assert.assertTrue(newArchivePatchFileToStream.exists());
             Assert.assertTrue(newArchivePatchFileToStream.length() > 0);
+            String md5 = applier.calculateMD5(newArchivePatchFileToStream);
+            System.out.println("md5:" + md5);
+            Assert.assertNotNull(md5);
         } catch (ApplierException e) {
             e.printStackTrace();
             throw e;

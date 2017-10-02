@@ -5,7 +5,6 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.RandomAccessFile;
 
-import io.github.lizhangqu.corepatch.applier.Applier;
 import io.github.lizhangqu.corepatch.applier.ApplierException;
 
 /**
@@ -15,7 +14,7 @@ import io.github.lizhangqu.corepatch.applier.ApplierException;
  * @version V1.0
  * @since 2017-10-02 19:56
  */
-final class CoreEmptyApplier implements Applier {
+final class CoreEmptyApplier extends CoreAbsApplier {
     @Override
     public boolean isSupport() {
         return false;
@@ -28,6 +27,11 @@ final class CoreEmptyApplier implements Applier {
 
     @Override
     public void apply(File oldFile, File patchFile, File newFile) throws ApplierException {
+        throw new ApplierException("not support");
+    }
+
+    @Override
+    public String calculateMD5(File newFile) throws ApplierException {
         throw new ApplierException("not support");
     }
 

@@ -40,4 +40,12 @@ public interface Applier {
      */
     void apply(File oldFile, File patchFile, File newFile) throws ApplierException;
 
+    /**
+     * 计算md5
+     *
+     * @param newFile 合成后的文件
+     * @return md5
+     */
+    String calculateMD5(File newFile) throws ApplierException;
+
 }

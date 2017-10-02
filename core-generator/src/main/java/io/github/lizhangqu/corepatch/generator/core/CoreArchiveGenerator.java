@@ -1,11 +1,8 @@
 package io.github.lizhangqu.corepatch.generator.core;
 
 import java.io.File;
-import java.io.InputStream;
 import java.io.OutputStream;
-import java.io.RandomAccessFile;
 
-import io.github.lizhangqu.corepatch.generator.Generator;
 import io.github.lizhangqu.corepatch.generator.GeneratorException;
 
 /**
@@ -15,7 +12,7 @@ import io.github.lizhangqu.corepatch.generator.GeneratorException;
  * @version V1.0
  * @since 2017-10-02 19:38
  */
-final class CoreArchiveGenerator implements Generator {
+final class CoreArchiveGenerator extends CoreAbsGenerator {
     @Override
     public boolean isSupport() {
         return true;

@@ -30,4 +30,5 @@ final class CoreApplierFactory implements ApplierFactory<CoreApplierType> {
         }
         return applier;
     }
+
 }

@@ -5,7 +5,6 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.RandomAccessFile;
 
-import io.github.lizhangqu.corepatch.applier.Applier;
 import io.github.lizhangqu.corepatch.applier.ApplierException;
 
 /**
@@ -15,7 +14,7 @@ import io.github.lizhangqu.corepatch.applier.ApplierException;
  * @version V1.0
  * @since 2017-10-02 19:37
  */
-final class CoreArchivePatchApplier implements Applier {
+final class CoreArchivePatchApplier extends CoreAbsApplier {
     @Override
     public boolean isSupport() {
         return true;
