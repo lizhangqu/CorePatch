@@ -52,9 +52,9 @@ final class CoreBsDiffGenerator extends CoreAbsGenerator {
         if (patchOutputStream instanceof DeflaterOutputStream) {
             compressedPatchOutputStream = (DeflaterOutputStream) patchOutputStream;
         } else {
-            compressor = new Deflater(9, true); // to compress the patch
+            compressor = new Deflater(DEFLATER_LEVEL, DEFLATER_NO_WRAP); // to compress the patch
             compressedPatchOutputStream =
-                    new DeflaterOutputStream(patchOutputStream, compressor, 32768);
+                    new DeflaterOutputStream(patchOutputStream, compressor, BUFFER_SIZE);
         }
         try {
             BsDiffPatchWriter.generatePatch(oldFile, newFile, compressedPatchOutputStream, MATCH_LENGTH_BYTES);
@@ -109,11 +109,11 @@ final class CoreBsDiffGenerator extends CoreAbsGenerator {
                 throw new GeneratorException("create patchFile failure");
             }
         }
-        Deflater compressor = new Deflater(9, true); // to compress the patch
+        Deflater compressor = new Deflater(DEFLATER_LEVEL, DEFLATER_NO_WRAP); // to compress the patch
         DeflaterOutputStream compressedPatchOutputStream = null;
         try {
             compressedPatchOutputStream =
-                    new DeflaterOutputStream(new FileOutputStream(patchFile), compressor, 32768);
+                    new DeflaterOutputStream(new FileOutputStream(patchFile), compressor, BUFFER_SIZE);
             generate(oldFile, newFile, compressedPatchOutputStream);
         } catch (FileNotFoundException e) {
             throw new GeneratorException("file not exist", e);

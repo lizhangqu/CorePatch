@@ -50,7 +50,7 @@ final class CoreBsPatchApplier extends CoreAbsApplier {
         } else {
             uncompressor = new Inflater(true); // to compress the patch
             patchInflaterInputStream =
-                    new InflaterInputStream(patchInputStream, uncompressor, 32768);
+                    new InflaterInputStream(patchInputStream, uncompressor, BUFFER_SIZE);
         }
         try {
             BsPatch.applyPatch(oldRandomAccessFile, newOutputStream, patchInflaterInputStream);
@@ -118,7 +118,7 @@ final class CoreBsPatchApplier extends CoreAbsApplier {
         Inflater uncompressor = new Inflater(true);
         InflaterInputStream patchInflaterInputStream = null;
         try {
-            patchInflaterInputStream = new InflaterInputStream(new FileInputStream(patchFile), uncompressor, 32768);
+            patchInflaterInputStream = new InflaterInputStream(new FileInputStream(patchFile), uncompressor, BUFFER_SIZE);
             apply(new RandomAccessFile(oldFile, "r"), patchInflaterInputStream, new FileOutputStream(newFile));
         } catch (FileNotFoundException e) {
             throw new ApplierException("file not exist");

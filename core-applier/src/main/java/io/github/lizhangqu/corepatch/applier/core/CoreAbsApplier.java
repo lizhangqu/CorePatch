@@ -15,6 +15,7 @@ import io.github.lizhangqu.corepatch.applier.ApplierException;
  * @since 2017-10-02 22:00
  */
 public abstract class CoreAbsApplier implements Applier {
+    protected static final int BUFFER_SIZE = 32768;
 
     private String getFileMD5(File file) {
         if (file == null || !file.exists() || !file.isFile()) {
