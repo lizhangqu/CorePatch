@@ -22,7 +22,7 @@ import io.github.lizhangqu.corepatch.applier.ApplierException;
  * @version V1.0
  * @since 2017-10-02 22:00
  */
-public abstract class CoreAbsApplier implements Applier {
+abstract class CoreAbsApplier implements Applier {
     protected static final int LEVEL = 9;
     protected static final boolean NO_WRAP = true;
     protected static final int BUFFER_SIZE = 32768;
@@ -105,14 +105,14 @@ public abstract class CoreAbsApplier implements Applier {
                     throw new ApplierException("create newFile failure");
                 }
             } catch (IOException e) {
-                throw new ApplierException("create newFile failure",e);
+                throw new ApplierException("create newFile failure", e);
             }
         }
     }
 
 
     @Override
-    public void apply(File oldFile, InputStream patchInputStream, OutputStream newOutputStream) throws ApplierException {
+    public final void apply(File oldFile, InputStream patchInputStream, OutputStream newOutputStream) throws ApplierException {
         verify(oldFile, patchInputStream, newOutputStream);
         Inflater uncompressor = null;
         InflaterInputStream patchInflaterInputStream = null;
@@ -146,11 +146,8 @@ public abstract class CoreAbsApplier implements Applier {
         }
     }
 
-    protected abstract void applyPatch(File oldFile, OutputStream newOutputStream, InflaterInputStream patchInflaterInputStream) throws Exception;
-
-
     @Override
-    public void apply(File oldFile, File patchFile, File newFile) throws ApplierException {
+    public final void apply(File oldFile, File patchFile, File newFile) throws ApplierException {
         verify(oldFile, patchFile, newFile);
         Inflater uncompressor = new Inflater(NO_WRAP);
         InflaterInputStream patchInflaterInputStream = null;
@@ -166,11 +163,14 @@ public abstract class CoreAbsApplier implements Applier {
 
 
     @Override
-    public String calculateMD5(File newFile) throws ApplierException {
+    public final String calculateMD5(File newFile) throws ApplierException {
         String fileMD5 = getFileMD5(newFile);
         if (fileMD5 == null || fileMD5.length() == 0) {
             throw new ApplierException("calculate md5 error");
         }
         return fileMD5;
     }
+
+    protected abstract void applyPatch(File oldFile, OutputStream newOutputStream, InflaterInputStream patchInflaterInputStream) throws Exception;
+
 }

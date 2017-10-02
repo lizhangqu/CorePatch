@@ -23,7 +23,7 @@ import io.github.lizhangqu.corepatch.generator.GeneratorException;
  * @version V1.0
  * @since 2017-10-02 22:02
  */
-public abstract class CoreAbsGenerator implements Generator {
+abstract class CoreAbsGenerator implements Generator {
     protected static final int LEVEL = 9;
     protected static final boolean NO_WRAP = true;
     protected static final int BUFFER_SIZE = 32768;
@@ -57,7 +57,7 @@ public abstract class CoreAbsGenerator implements Generator {
         return null;
     }
 
-    protected void verify(File oldFile, File newFile, OutputStream patchOutputStream) throws GeneratorException {
+    private void verify(File oldFile, File newFile, OutputStream patchOutputStream) throws GeneratorException {
         if (!isSupport()) {
             throw new GeneratorException("not support");
         }
@@ -116,7 +116,7 @@ public abstract class CoreAbsGenerator implements Generator {
 
 
     @Override
-    public void generate(File oldFile, File newFile, File patchFile) throws GeneratorException {
+    public final void generate(File oldFile, File newFile, File patchFile) throws GeneratorException {
         verify(oldFile, newFile, patchFile);
         Deflater compressor = new Deflater(LEVEL, NO_WRAP); // to compress the patch
         DeflaterOutputStream compressedPatchOutputStream = null;
@@ -133,7 +133,7 @@ public abstract class CoreAbsGenerator implements Generator {
 
 
     @Override
-    public void generate(File oldFile, File newFile, OutputStream patchOutputStream) throws GeneratorException {
+    public final void generate(File oldFile, File newFile, OutputStream patchOutputStream) throws GeneratorException {
         verify(oldFile, newFile, patchOutputStream);
         Deflater compressor = null;
         DeflaterOutputStream compressedPatchOutputStream = null;
@@ -162,15 +162,15 @@ public abstract class CoreAbsGenerator implements Generator {
         }
     }
 
-    protected abstract void generatePatch(File oldFile, File newFile, DeflaterOutputStream compressedPatchOutputStream) throws Exception;
-
-
     @Override
-    public String calculateMD5(File patchFile) throws GeneratorException {
+    public final String calculateMD5(File patchFile) throws GeneratorException {
         String fileMD5 = getFileMD5(patchFile);
         if (fileMD5 == null || fileMD5.length() == 0) {
             throw new GeneratorException("calculate md5 error");
         }
         return fileMD5;
     }
+
+    protected abstract void generatePatch(File oldFile, File newFile, DeflaterOutputStream compressedPatchOutputStream) throws Exception;
+
 }
