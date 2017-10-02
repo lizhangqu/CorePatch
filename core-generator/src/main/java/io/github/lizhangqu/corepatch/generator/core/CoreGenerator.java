@@ -58,6 +58,7 @@ public class CoreGenerator {
             return new CoreEmptyGenerator();
         }
         CoreGeneratorType[] values = CoreGeneratorType.values();
+        //noinspection ConstantConditions
         if (values != null && values.length > 0) {
             for (CoreGeneratorType coreGeneratorType : values) {
                 if (coreGeneratorType.getName().equalsIgnoreCase(type)) {
