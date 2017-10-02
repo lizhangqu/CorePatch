@@ -1,5 +1,7 @@
 package io.github.lizhangqu.corepatch.generator.core;
 
+import com.google.archivepatcher.generator.bsdiff.BsDiffPatchWriter;
+
 import java.io.File;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -22,7 +24,7 @@ final class CoreEmptyGenerator implements Generator {
     }
 
     @Override
-    public void generate(InputStream oldInputStream, InputStream newInputStream, OutputStream patchOutputStream) throws GeneratorException {
+    public void generate(File oldFile, InputStream newInputStream, OutputStream patchOutputStream) throws GeneratorException {
         throw new GeneratorException("not support");
     }
 

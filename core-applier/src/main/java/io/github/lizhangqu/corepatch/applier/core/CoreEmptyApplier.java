@@ -22,7 +22,7 @@ final class CoreEmptyApplier implements Applier {
     }
 
     @Override
-    public void apply(InputStream oldInputStream, InputStream patchInputStream, OutputStream newOutputStream) throws ApplierException {
+    public void apply(File oldFile, InputStream patchInputStream, OutputStream newOutputStream) throws ApplierException {
 
     }
 

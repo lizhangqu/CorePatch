@@ -4,6 +4,7 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     testImplementation "junit:junit:${global_junitVersion}"
     compileOnly project(':api-applier')
+    compileOnly project(':archive-patch-applier')
 }
 
 apply from: project.rootProject.file('gradle/artifact_release.gradle')

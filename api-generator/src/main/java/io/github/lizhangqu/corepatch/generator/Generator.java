@@ -23,12 +23,12 @@ public interface Generator {
     /**
      * 生成patch
      *
-     * @param oldInputStream    旧文件输入流
+     * @param oldFile    旧文件
      * @param newInputStream    新文件输入流
      * @param patchOutputStream 目标patch文件输出流
      * @throws GeneratorException 生成异常
      */
-    void generate(InputStream oldInputStream, InputStream newInputStream, OutputStream patchOutputStream) throws GeneratorException;
+    void generate(File oldFile, InputStream newInputStream, OutputStream patchOutputStream) throws GeneratorException;
 
     /**
      * 生成patch

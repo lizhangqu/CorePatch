@@ -22,7 +22,7 @@ final class CoreArchiveGenerator implements Generator {
     }
 
     @Override
-    public void generate(InputStream oldInputStream, InputStream newInputStream, OutputStream patchOutputStream) throws GeneratorException {
+    public void generate(File oldFile, InputStream newInputStream, OutputStream patchOutputStream) throws GeneratorException {
 
     }
 

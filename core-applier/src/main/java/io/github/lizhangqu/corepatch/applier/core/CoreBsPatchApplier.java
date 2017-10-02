@@ -1,5 +1,7 @@
 package io.github.lizhangqu.corepatch.applier.core;
 
+import com.google.archivepatcher.applier.bsdiff.BsPatch;
+
 import java.io.File;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -22,8 +24,7 @@ final class CoreBsPatchApplier implements Applier {
     }
 
     @Override
-    public void apply(InputStream oldInputStream, InputStream patchInputStream, OutputStream newOutputStream) throws ApplierException {
-
+    public void apply(File oldFile, InputStream patchInputStream, OutputStream newOutputStream) throws ApplierException {
     }
 
     @Override

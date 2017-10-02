@@ -23,12 +23,12 @@ public interface Applier {
     /**
      * 合成patch
      *
-     * @param oldInputStream   旧文件输入流
+     * @param oldFile   旧文件
      * @param patchInputStream patch文件输入流
      * @param newOutputStream  合成的新文件输出流
      * @throws ApplierException 合成异常
      */
-    void apply(InputStream oldInputStream, InputStream patchInputStream, OutputStream newOutputStream) throws ApplierException;
+    void apply(File oldFile, InputStream patchInputStream, OutputStream newOutputStream) throws ApplierException;
 
     /**
      * 合成patch
