@@ -1,9 +1,13 @@
 package io.github.lizhangqu.corepatch.generator.core;
 
-import java.io.File;
-import java.io.OutputStream;
+import com.google.archivepatcher.generator.FileByFileV1DeltaGenerator;
+import com.google.archivepatcher.shared.DefaultDeflateCompatibilityWindow;
+import com.google.archivepatcher.shared.JreDeflateParameters;
 
-import io.github.lizhangqu.corepatch.generator.GeneratorException;
+import java.io.File;
+import java.util.Map;
+import java.util.zip.DeflaterOutputStream;
+
 
 /**
  * archive diff
@@ -13,23 +17,25 @@ import io.github.lizhangqu.corepatch.generator.GeneratorException;
  * @since 2017-10-02 19:38
  */
 final class CoreArchiveGenerator extends CoreAbsGenerator {
+    DefaultDeflateCompatibilityWindow compatibilityWindow = new DefaultDeflateCompatibilityWindow();
+
     @Override
     public boolean isSupport() {
+        Map<JreDeflateParameters, String> incompatibleValues = compatibilityWindow.getIncompatibleValues();
+        if (incompatibleValues == null || incompatibleValues.size() == 0) {
+            return true;
+        }
+        for (JreDeflateParameters jreDeflateParameters : incompatibleValues.keySet()) {
+            if (jreDeflateParameters.level == LEVEL && jreDeflateParameters.nowrap == NO_WRAP) {
+                return false;
+            }
+        }
         return true;
     }
 
     @Override
-    public void generate(File oldFile, File newFile, OutputStream patchOutputStream) throws GeneratorException {
-        if (!isSupport()) {
-            throw new GeneratorException("not support");
-        }
-    }
-
-    @Override
-    public void generate(File oldFile, File newFile, File patchFile) throws GeneratorException {
-        if (!isSupport()) {
-            throw new GeneratorException("not support");
-        }
+    protected void generatePatch(File oldFile, File newFile, DeflaterOutputStream compressedPatchOutputStream) throws Exception {
+        new FileByFileV1DeltaGenerator().generateDelta(oldFile, newFile, compressedPatchOutputStream);
     }
 
 }

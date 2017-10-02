@@ -5,6 +5,7 @@ dependencies {
     testImplementation "junit:junit:${global_junitVersion}"
     compileOnly project(':api-applier')
     compileOnly project(':archive-patch-applier')
+    compileOnly project(':archive-patch-shared')
 }
 
 apply from: project.rootProject.file('gradle/artifact_release.gradle')

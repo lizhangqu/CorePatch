@@ -1,9 +1,15 @@
 package io.github.lizhangqu.corepatch.applier.core;
 
+import com.google.archivepatcher.applier.FileByFileV1DeltaApplier;
+import com.google.archivepatcher.shared.DefaultDeflateCompatibilityWindow;
+import com.google.archivepatcher.shared.JreDeflateParameters;
+
 import java.io.File;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.RandomAccessFile;
+import java.util.Map;
+import java.util.zip.InflaterInputStream;
 
 import io.github.lizhangqu.corepatch.applier.ApplierException;
 
@@ -15,23 +21,25 @@ import io.github.lizhangqu.corepatch.applier.ApplierException;
  * @since 2017-10-02 19:37
  */
 final class CoreArchivePatchApplier extends CoreAbsApplier {
+    DefaultDeflateCompatibilityWindow compatibilityWindow = new DefaultDeflateCompatibilityWindow();
+
     @Override
     public boolean isSupport() {
+        Map<JreDeflateParameters, String> incompatibleValues = compatibilityWindow.getIncompatibleValues();
+        if (incompatibleValues == null || incompatibleValues.size() == 0) {
+            return true;
+        }
+        for (JreDeflateParameters jreDeflateParameters : incompatibleValues.keySet()) {
+            if (jreDeflateParameters.level == LEVEL && jreDeflateParameters.nowrap == NO_WRAP) {
+                return false;
+            }
+        }
         return true;
     }
 
-    @Override
-    public void apply(RandomAccessFile oldFile, InputStream patchInputStream, OutputStream newOutputStream) throws ApplierException {
-        if (!isSupport()) {
-            throw new ApplierException("not support");
-        }
-    }
 
     @Override
-    public void apply(File oldFile, File patchFile, File newFile) throws ApplierException {
-        if (!isSupport()) {
-            throw new ApplierException("not support");
-        }
+    protected void applyPatch(File oldFile, OutputStream newOutputStream, InflaterInputStream patchInflaterInputStream) throws Exception {
+        new FileByFileV1DeltaApplier().applyDelta(oldFile, patchInflaterInputStream, newOutputStream);
     }
-
 }
