@@ -22,17 +22,17 @@ final class CoreArchivePatchApplier implements Applier {
     }
 
     @Override
-    public void apply(File oldFile, InputStream patchInputStream, OutputStream newOutputStream) throws ApplierException {
-        throw new ApplierException("not support");
+    public void apply(RandomAccessFile oldFile, InputStream patchInputStream, OutputStream newOutputStream) throws ApplierException {
+        if (!isSupport()) {
+            throw new ApplierException("not support");
+        }
     }
 
     @Override
     public void apply(File oldFile, File patchFile, File newFile) throws ApplierException {
-        throw new ApplierException("not support");
+        if (!isSupport()) {
+            throw new ApplierException("not support");
+        }
     }
 
-    @Override
-    public void apply(RandomAccessFile oldFile, RandomAccessFile patchFile, RandomAccessFile newFile) throws ApplierException {
-        throw new ApplierException("not support");
-    }
 }

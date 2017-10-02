@@ -8,8 +8,8 @@ package io.github.lizhangqu.corepatch.applier.core;
  * @since 2017-10-02 19:43
  */
 public enum CoreApplierType {
-    BS_PATCH("BS_PATCH"),
-    ARCHIVE_PATCH("ARCHIVE_PATCH");
+    BS("BS"),
+    ARCHIVE("ARCHIVE");
 
     private String name;
 

@@ -24,7 +24,7 @@ final class CoreEmptyGenerator implements Generator {
     }
 
     @Override
-    public void generate(File oldFile, InputStream newInputStream, OutputStream patchOutputStream) throws GeneratorException {
+    public void generate(File oldFile, File newFile, OutputStream patchOutputStream) throws GeneratorException {
         throw new GeneratorException("not support");
     }
 
@@ -33,8 +33,4 @@ final class CoreEmptyGenerator implements Generator {
         throw new GeneratorException("not support");
     }
 
-    @Override
-    public void generate(RandomAccessFile oldFile, RandomAccessFile newFile, RandomAccessFile patchFile) throws GeneratorException {
-        throw new GeneratorException("not support");
-    }
 }

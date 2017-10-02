@@ -8,8 +8,8 @@ package io.github.lizhangqu.corepatch.generator.core;
  * @since 2017-10-02 19:44
  */
 public enum CoreGeneratorType {
-    BS_DIFF("BS_DIFF"),
-    ARCHIVE_DIFF("ARCHIVE_DIFF");
+    BS("BS"),
+    ARCHIVE("ARCHIVE");
     private String name;
 
     CoreGeneratorType(String name) {

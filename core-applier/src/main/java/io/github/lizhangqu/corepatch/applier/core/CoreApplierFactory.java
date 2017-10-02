@@ -18,10 +18,10 @@ final class CoreApplierFactory implements ApplierFactory<CoreApplierType> {
         }
         Applier applier = null;
         switch (type) {
-            case BS_PATCH:
+            case BS:
                 applier = new CoreBsPatchApplier();
                 break;
-            case ARCHIVE_PATCH:
+            case ARCHIVE:
                 applier = new CoreArchivePatchApplier();
                 break;
             default:

@@ -23,7 +23,7 @@ public class CoreGenerator {
      *
      * @return CoreGenerator
      */
-    public CoreGenerator getInstance() {
+    public static CoreGenerator getInstance() {
         if (sInstance == null) {
             synchronized (CoreGenerator.class) {
                 if (sInstance == null) {

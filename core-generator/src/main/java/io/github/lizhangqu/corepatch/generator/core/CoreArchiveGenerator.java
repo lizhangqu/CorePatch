@@ -22,17 +22,17 @@ final class CoreArchiveGenerator implements Generator {
     }
 
     @Override
-    public void generate(File oldFile, InputStream newInputStream, OutputStream patchOutputStream) throws GeneratorException {
-
+    public void generate(File oldFile, File newFile, OutputStream patchOutputStream) throws GeneratorException {
+        if (!isSupport()) {
+            throw new GeneratorException("not support");
+        }
     }
 
     @Override
     public void generate(File oldFile, File newFile, File patchFile) throws GeneratorException {
-
+        if (!isSupport()) {
+            throw new GeneratorException("not support");
+        }
     }
 
-    @Override
-    public void generate(RandomAccessFile oldFile, RandomAccessFile newFile, RandomAccessFile patchFile) throws GeneratorException {
-
-    }
 }

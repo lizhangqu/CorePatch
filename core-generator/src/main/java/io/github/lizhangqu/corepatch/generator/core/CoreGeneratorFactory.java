@@ -18,10 +18,10 @@ final class CoreGeneratorFactory implements GeneratorFactory<CoreGeneratorType> 
         }
         Generator generator = null;
         switch (type) {
-            case BS_DIFF:
+            case BS:
                 generator = new CoreBsDiffGenerator();
                 break;
-            case ARCHIVE_DIFF:
+            case ARCHIVE:
                 generator = new CoreArchiveGenerator();
                 break;
             default:

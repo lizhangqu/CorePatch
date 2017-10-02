@@ -23,12 +23,12 @@ public interface Applier {
     /**
      * 合成patch
      *
-     * @param oldFile   旧文件
-     * @param patchInputStream patch文件输入流
-     * @param newOutputStream  合成的新文件输出流
+     * @param oldRandomAccessFile 旧文件
+     * @param patchInputStream    patch文件输入流
+     * @param newOutputStream     合成的新文件输出流
      * @throws ApplierException 合成异常
      */
-    void apply(File oldFile, InputStream patchInputStream, OutputStream newOutputStream) throws ApplierException;
+    void apply(RandomAccessFile oldRandomAccessFile, InputStream patchInputStream, OutputStream newOutputStream) throws ApplierException;
 
     /**
      * 合成patch
@@ -39,15 +39,5 @@ public interface Applier {
      * @throws ApplierException 合成异常
      */
     void apply(File oldFile, File patchFile, File newFile) throws ApplierException;
-
-    /**
-     * 合成patch
-     *
-     * @param oldFile   旧文件
-     * @param patchFile patch文件
-     * @param newFile   合成的新文件
-     * @throws ApplierException 合成异常
-     */
-    void apply(RandomAccessFile oldFile, RandomAccessFile patchFile, RandomAccessFile newFile) throws ApplierException;
 
 }

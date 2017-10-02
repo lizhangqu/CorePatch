@@ -23,7 +23,7 @@ public class CoreApplier {
      *
      * @return CoreApplier
      */
-    public CoreApplier getInstance() {
+    public static CoreApplier getInstance() {
         if (sInstance == null) {
             synchronized (CoreApplier.class) {
                 if (sInstance == null) {
