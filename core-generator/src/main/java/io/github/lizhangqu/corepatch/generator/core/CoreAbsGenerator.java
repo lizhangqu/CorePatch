@@ -1,7 +1,5 @@
 package io.github.lizhangqu.corepatch.generator.core;
 
-import com.google.archivepatcher.generator.bsdiff.BsDiffPatchWriter;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;

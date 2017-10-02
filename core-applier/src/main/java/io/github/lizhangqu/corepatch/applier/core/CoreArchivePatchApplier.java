@@ -5,13 +5,10 @@ import com.google.archivepatcher.shared.DefaultDeflateCompatibilityWindow;
 import com.google.archivepatcher.shared.JreDeflateParameters;
 
 import java.io.File;
-import java.io.InputStream;
 import java.io.OutputStream;
-import java.io.RandomAccessFile;
 import java.util.Map;
 import java.util.zip.InflaterInputStream;
 
-import io.github.lizhangqu.corepatch.applier.ApplierException;
 
 /**
  * archive patch

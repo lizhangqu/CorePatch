@@ -3,7 +3,6 @@ package io.github.lizhangqu.corepatch.applier.core;
 import java.io.File;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.io.RandomAccessFile;
 
 import io.github.lizhangqu.corepatch.applier.Applier;
 import io.github.lizhangqu.corepatch.applier.ApplierException;
