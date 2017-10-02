@@ -120,7 +120,7 @@ public abstract class CoreAbsApplier implements Applier {
         if (patchInputStream instanceof InflaterInputStream) {
             patchInflaterInputStream = (InflaterInputStream) patchInputStream;
         } else {
-            uncompressor = new Inflater(true); // to compress the patch
+            uncompressor = new Inflater(NO_WRAP); // to compress the patch
             patchInflaterInputStream =
                     new InflaterInputStream(patchInputStream, uncompressor, BUFFER_SIZE);
         }
@@ -153,7 +153,7 @@ public abstract class CoreAbsApplier implements Applier {
     @Override
     public void apply(File oldFile, File patchFile, File newFile) throws ApplierException {
         verify(oldFile, patchFile, newFile);
-        Inflater uncompressor = new Inflater(true);
+        Inflater uncompressor = new Inflater(NO_WRAP);
         InflaterInputStream patchInflaterInputStream = null;
         try {
             patchInflaterInputStream = new InflaterInputStream(new FileInputStream(patchFile), uncompressor, BUFFER_SIZE);
