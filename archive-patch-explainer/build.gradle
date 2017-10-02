@@ -1,0 +1,8 @@
+// explainer module
+apply plugin: 'java'
+
+dependencies {
+    testImplementation 'junit:junit:4.12'
+    compileOnly project(':archive-patch-generator')
+    compileOnly project(':archive-patch-shared')
+}
