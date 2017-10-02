@@ -109,7 +109,7 @@ public abstract class CoreAbsGenerator implements Generator {
                     throw new GeneratorException("create patchFile failure");
                 }
             } catch (IOException e) {
-                throw new GeneratorException("create patchFile failure");
+                throw new GeneratorException("create patchFile failure", e);
             }
         }
     }

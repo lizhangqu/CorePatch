@@ -105,7 +105,7 @@ public abstract class CoreAbsApplier implements Applier {
                     throw new ApplierException("create newFile failure");
                 }
             } catch (IOException e) {
-                throw new ApplierException("create newFile failure");
+                throw new ApplierException("create newFile failure",e);
             }
         }
     }
@@ -127,7 +127,7 @@ public abstract class CoreAbsApplier implements Applier {
             applyPatch(oldFile, newOutputStream, patchInflaterInputStream);
             newOutputStream.flush();
         } catch (Exception e) {
-            throw new ApplierException("apply failure");
+            throw new ApplierException("apply failure", e);
         } finally {
             if (uncompressor != null) {
                 uncompressor.end();
@@ -158,7 +158,7 @@ public abstract class CoreAbsApplier implements Applier {
             patchInflaterInputStream = new InflaterInputStream(new FileInputStream(patchFile), uncompressor, BUFFER_SIZE);
             apply(oldFile, patchInflaterInputStream, new FileOutputStream(newFile));
         } catch (FileNotFoundException e) {
-            throw new ApplierException("file not exist");
+            throw new ApplierException("file not exist", e);
         } finally {
             uncompressor.end();
         }
