@@ -1,4 +1,4 @@
-package io.github.lizhangqu.corepatch.sample;
+package io.github.lizhangqu.corepatch.sample.util;
 
 import android.content.Context;
 import android.content.pm.PackageInfo;
