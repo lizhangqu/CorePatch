@@ -36,10 +36,10 @@ public class ExplainerTest {
     @Test
     public void testExplainer() throws IOException, InterruptedException {
         DeflateCompressor compressor = new DeflateCompressor();
-        compressor.setCaching(true);
         compressor.setCompressionLevel(9);
+        compressor.setNowrap(true);
         PatchExplainer explainer =
-                new PatchExplainer(new DeflateCompressor(), new BsDiffDeltaGenerator());
+                new PatchExplainer(compressor, new BsDiffDeltaGenerator());
         List<RecommendationModifier> recommendationModifiers = new ArrayList<RecommendationModifier>();
         if (totalRecompressionLimit != null) {
             recommendationModifiers.add(new TotalRecompressionLimiter(totalRecompressionLimit));
