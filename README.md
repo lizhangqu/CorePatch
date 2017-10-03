@@ -10,7 +10,7 @@ See details in [CHANGELOG](https://github.com/lizhangqu/CorePatch/blob/master/CH
 
 I have provided a sample. It is based on unit test.
 
-See sample [here on Github](https://github.com/lizhangqu/CorePatch/tree/master/app/src/test).
+See sample [here on Github](https://github.com/lizhangqu/CorePatch/tree/master/app/src/test/java/io/github/lizhangqu/corepatch/sample).
 
 To run the test cases, simply clone this repository, use android studio to compile and run
 
