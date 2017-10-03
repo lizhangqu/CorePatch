@@ -26,10 +26,10 @@ import io.github.lizhangqu.corepatch.generator.core.CoreGeneratorType;
 public class CoreApplierTest {
     static File oldFile = new File("app/files/2.2.4.apk");
 
-    static File archivePatchFileToFile = new File("app/files/archive-patch-out-to-file.diff");
+    static File archivePatchFileToFile = new File("app/files/bspatch.diff");
     static File archivePatchFileToStream = new File("app/files/archive-patch-out-to-stream.diff");
     static File bsPatchFileToFile = new File("app/files/bs-patch-out-to-file.diff");
-    static File bsPatchFileToStream = new File("app/files/bs-patch2-out-to-stream.diff");
+    static File bsPatchFileToStream = new File("app/files/archivepatch.diff");
 
     static File newArchivePatchFileToFile = new File("app/files/2.3.0-archive-patch-out-to-file.apk");
     static File newArchivePatchFileToStream = new File("app/files/2.3.0-archive-patch-out-to-stream.apk");
