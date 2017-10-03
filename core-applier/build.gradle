@@ -3,9 +3,13 @@ apply plugin: 'java'
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     testImplementation "junit:junit:${global_junitVersion}"
-    compileOnly project(':api-applier')
-    compileOnly project(':archive-patch-applier')
-    compileOnly project(':archive-patch-shared')
+//    compileOnly project(':api-applier')
+//    compileOnly project(':archive-patch-applier')
+//    compileOnly project(':archive-patch-shared')
+
+    implementation "com.google.archivepatcher:archive-patch-shared:1.0.0"
+    implementation "com.google.archivepatcher:archive-patch-applier:1.0.0"
+    implementation "io.github.lizhangqu:corepatch-api-applier:1.0.0"
 }
 
 apply from: project.rootProject.file('gradle/artifact_release.gradle')
