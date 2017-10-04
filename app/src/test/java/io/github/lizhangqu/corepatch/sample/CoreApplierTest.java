@@ -21,10 +21,10 @@ import io.github.lizhangqu.corepatch.applier.core.CoreApplierType;
 public class CoreApplierTest {
     static File oldFile = new File("app/files/2.2.4.apk");
 
-    static File archivePatchFileToFile = new File("app/files/bspatch.diff");
+    static File archivePatchFileToFile = new File("app/files/archive-patch-out-to-file.diff");
     static File archivePatchFileToStream = new File("app/files/archive-patch-out-to-stream.diff");
     static File bsPatchFileToFile = new File("app/files/bs-patch-out-to-file.diff");
-    static File bsPatchFileToStream = new File("app/files/archivepatch-out-to-stream.diff");
+    static File bsPatchFileToStream = new File("app/files/bs-patch-out-to-stream.diff");
     static File totalFileToFile = new File("app/files/total-out-to-file.diff");
     static File totalFileToStream = new File("app/files/total-out-to-stream.diff");
 
