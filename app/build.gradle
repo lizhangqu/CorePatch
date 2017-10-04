@@ -29,15 +29,15 @@ dependencies {
 
     implementation "com.android.support:appcompat-v7:${global_androidSupportVersion}"
     implementation "com.android.support.constraint:constraint-layout:${global_androidConstraintLayoutVersion}"
+//
+//    implementation project(':api-applier')
+//    implementation project(':api-generator')
+//    implementation project(':core-applier')
+//    implementation project(':core-generator')
+//    implementation project(':archive-patch-applier')
+//    implementation project(':archive-patch-generator')
+//    implementation project(':archive-patch-shared')
+//    implementation project(':archive-patch-explainer')
 
-    implementation project(':api-applier')
-    implementation project(':api-generator')
-    implementation project(':core-applier')
-    implementation project(':core-generator')
-    implementation project(':archive-patch-applier')
-    implementation project(':archive-patch-generator')
-    implementation project(':archive-patch-shared')
-    implementation project(':archive-patch-explainer')
-
-//    implementation "io.github.lizhangqu:corepatch-core-applier:1.0.1"
+    implementation "io.github.lizhangqu:corepatch-core-applier:1.0.1"
 }
