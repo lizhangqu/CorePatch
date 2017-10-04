@@ -18,7 +18,7 @@ import io.github.lizhangqu.corepatch.generator.GeneratorException;
  * @version V1.0
  * @since 2017-10-04 10:24
  */
-public class CoreTotalGenerator extends CoreAbsWithMD5AndVerifyGenerator {
+class CoreTotalGenerator extends CoreAbsWithMD5AndVerifyGenerator {
     @Override
     public boolean isSupport() {
         return true;

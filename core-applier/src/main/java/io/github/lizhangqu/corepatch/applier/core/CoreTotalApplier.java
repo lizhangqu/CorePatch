@@ -20,7 +20,7 @@ import io.github.lizhangqu.corepatch.applier.ApplierException;
  * @version V1.0
  * @since 2017-10-04 10:23
  */
-public class CoreTotalApplier extends CoreAbsWithMD5AndVerifyApplier {
+class CoreTotalApplier extends CoreAbsWithMD5AndVerifyApplier {
 
     @Override
     public boolean isSupport() {
