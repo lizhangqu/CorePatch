@@ -36,7 +36,7 @@ final class CoreArchivePatchApplier extends CoreAbsApplier {
 
 
     @Override
-    protected void applyPatch(File oldFile, OutputStream newOutputStream, InflaterInputStream patchInflaterInputStream) throws Exception {
+    protected void applyPatch(File oldFile, InflaterInputStream patchInflaterInputStream, OutputStream newOutputStream) throws Exception {
         new FileByFileV1DeltaApplier().applyDelta(oldFile, patchInflaterInputStream, newOutputStream);
     }
 }

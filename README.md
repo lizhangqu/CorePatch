@@ -23,9 +23,9 @@ To run the test cases, simply clone this repository, use android studio to compi
 ```
 dependencies {
     //for generator
-    compile "io.github.lizhangqu:corepatch-core-generator:1.0.0"
+    compile "io.github.lizhangqu:corepatch-core-generator:1.0.1"
     //for applier
-    compile "io.github.lizhangqu:corepatch-core-applier:1.0.0"
+    compile "io.github.lizhangqu:corepatch-core-applier:1.0.1"
 }
 ```
 
@@ -37,7 +37,7 @@ dependencies {
     <dependency>
       <groupId>io.github.lizhangqu</groupId>
       <artifactId>corepatch-core-generator</artifactId>
-      <version>1.0.0</version>
+      <version>1.0.1</version>
     </dependency>
 </dependencies>
 
@@ -46,7 +46,7 @@ dependencies {
     <dependency>
       <groupId>io.github.lizhangqu</groupId>
       <artifactId>corepatch-core-applier</artifactId>
-      <version>1.0.0</version>
+      <version>1.0.1</version>
     </dependency>
 </dependencies>
 ```
@@ -58,8 +58,10 @@ dependencies {
 
 Generator generator = CoreGenerator.getInstance().getGenerator(CoreGeneratorType.BS);
 //Generator generator = CoreGenerator.getInstance().getGenerator(CoreGeneratorType.ARCHIVE);
+//Generator generator = CoreGenerator.getInstance().getGenerator(CoreGeneratorType.TOTAL);
 //Generator generator = CoreGenerator.getInstance().getGenerator("BS");
 //Generator generator = CoreGenerator.getInstance().getGenerator("ARCHIVE");
+//Generator generator = CoreGenerator.getInstance().getGenerator("TOTAL");
 
 //generate
 
@@ -78,8 +80,10 @@ String md5 = generator.calculateMD5(toGeneratedPatchFile);
 
  Applier applier = CoreApplier.getInstance().getApplier(CoreApplierType.BS);
 //Applier applier = CoreApplier.getInstance().getApplier(CoreApplierType.ARCHIVE);
+//Applier applier = CoreApplier.getInstance().getApplier(CoreApplierType.TOTAL);
 //Applier applier = CoreApplier.getInstance().getApplier("BS");
 //Applier applier = CoreApplier.getInstance().getApplier("ARCHIVE");
+//Applier applier = CoreApplier.getInstance().getApplier("TOTAL");
 
 //apply
 

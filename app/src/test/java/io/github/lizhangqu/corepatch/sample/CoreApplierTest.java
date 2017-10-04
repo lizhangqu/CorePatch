@@ -7,16 +7,11 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.RandomAccessFile;
 
 import io.github.lizhangqu.corepatch.applier.Applier;
 import io.github.lizhangqu.corepatch.applier.ApplierException;
 import io.github.lizhangqu.corepatch.applier.core.CoreApplier;
 import io.github.lizhangqu.corepatch.applier.core.CoreApplierType;
-import io.github.lizhangqu.corepatch.generator.Generator;
-import io.github.lizhangqu.corepatch.generator.GeneratorException;
-import io.github.lizhangqu.corepatch.generator.core.CoreGenerator;
-import io.github.lizhangqu.corepatch.generator.core.CoreGeneratorType;
 
 /**
  * @author lizhangqu
@@ -29,7 +24,9 @@ public class CoreApplierTest {
     static File archivePatchFileToFile = new File("app/files/bspatch.diff");
     static File archivePatchFileToStream = new File("app/files/archive-patch-out-to-stream.diff");
     static File bsPatchFileToFile = new File("app/files/bs-patch-out-to-file.diff");
-    static File bsPatchFileToStream = new File("app/files/archivepatch.diff");
+    static File bsPatchFileToStream = new File("app/files/archivepatch-out-to-stream.diff");
+    static File totalFileToFile = new File("app/files/total-out-to-file.diff");
+    static File totalFileToStream = new File("app/files/total-out-to-stream.diff");
 
     static File newArchivePatchFileToFile = new File("app/files/2.3.0-archive-patch-out-to-file.apk");
     static File newArchivePatchFileToStream = new File("app/files/2.3.0-archive-patch-out-to-stream.apk");
@@ -37,6 +34,8 @@ public class CoreApplierTest {
     static File newBsPatchFileToFile = new File("app/files/2.3.0-bs-patch-out-to-file.apk");
     static File newBsPatchFileToStream = new File("app/files/2.3.0-bs-patch-out-to-stream.apk");
 
+    static File newTotalFileToFile = new File("app/files/2.3.0-total-out-to-file.apk");
+    static File newTotalFileToStream = new File("app/files/2.3.0-total-out-to-stream.apk");
     @Test
     public void testApplyBsPatchOutToFile() throws ApplierException {
         long start = System.currentTimeMillis();
@@ -114,6 +113,46 @@ public class CoreApplierTest {
         } finally {
             long end = System.currentTimeMillis();
             System.out.println("testApplyArchivePatchOutToStream time:" + (end - start));
+        }
+    }
+
+    @Test
+    public void testApplyTotalOutToFile() throws ApplierException {
+        long start = System.currentTimeMillis();
+        Applier applier = CoreApplier.getInstance().getApplier(CoreApplierType.TOTAL);
+        try {
+            applier.apply(oldFile, totalFileToFile, newTotalFileToFile);
+            Assert.assertTrue(newTotalFileToFile.exists());
+            Assert.assertTrue(newTotalFileToFile.length() > 0);
+            String md5 = applier.calculateMD5(newTotalFileToFile);
+            System.out.println("md5:" + md5);
+            Assert.assertNotNull(md5);
+        } catch (ApplierException e) {
+            e.printStackTrace();
+            throw e;
+        } finally {
+            long end = System.currentTimeMillis();
+            System.out.println("testApplyTotalOutToFile time:" + (end - start));
+        }
+    }
+
+    @Test
+    public void testApplyTotalOutToStream() throws ApplierException, FileNotFoundException {
+        long start = System.currentTimeMillis();
+        Applier applier = CoreApplier.getInstance().getApplier(CoreApplierType.TOTAL);
+        try {
+            applier.apply(oldFile, new FileInputStream(totalFileToStream), new FileOutputStream(newTotalFileToStream));
+            Assert.assertTrue(newTotalFileToStream.exists());
+            Assert.assertTrue(newTotalFileToStream.length() > 0);
+            String md5 = applier.calculateMD5(newTotalFileToStream);
+            System.out.println("md5:" + md5);
+            Assert.assertNotNull(md5);
+        } catch (ApplierException e) {
+            e.printStackTrace();
+            throw e;
+        } finally {
+            long end = System.currentTimeMillis();
+            System.out.println("testApplyTotalOutToStream time:" + (end - start));
         }
     }
 

@@ -18,6 +18,9 @@ final class CoreApplierFactory implements ApplierFactory<CoreApplierType> {
         }
         Applier applier = null;
         switch (type) {
+            case TOTAL:
+                applier = new CoreTotalApplier();
+                break;
             case BS:
                 applier = new CoreBsPatchApplier();
                 break;

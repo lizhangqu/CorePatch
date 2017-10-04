@@ -8,8 +8,9 @@ package io.github.lizhangqu.corepatch.applier.core;
  * @since 2017-10-02 19:43
  */
 public enum CoreApplierType {
-    BS("BS"),
-    ARCHIVE("ARCHIVE");
+    TOTAL("TOTAL"),//全量
+    BS("BS"),//bspatch
+    ARCHIVE("ARCHIVE");//google archive patch
 
     private String name;
 

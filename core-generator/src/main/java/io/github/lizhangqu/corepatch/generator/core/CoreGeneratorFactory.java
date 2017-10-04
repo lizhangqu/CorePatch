@@ -23,6 +23,9 @@ final class CoreGeneratorFactory implements GeneratorFactory<CoreGeneratorType> 
         }
         Generator generator = null;
         switch (type) {
+            case TOTAL:
+                generator = new CoreTotalGenerator();
+                break;
             case BS:
                 generator = new CoreBsDiffGenerator();
                 break;

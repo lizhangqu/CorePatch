@@ -8,8 +8,9 @@ package io.github.lizhangqu.corepatch.generator.core;
  * @since 2017-10-02 19:44
  */
 public enum CoreGeneratorType {
-    BS("BS"),
-    ARCHIVE("ARCHIVE");
+    TOTAL("TOTAL"),//全量
+    BS("BS"),//bsdiff
+    ARCHIVE("ARCHIVE");//google archive patch
     private String name;
 
     CoreGeneratorType(String name) {

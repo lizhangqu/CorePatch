@@ -23,7 +23,10 @@ public class CoreGeneratorTest {
     static File archivePatchFileToFile = new File("app/files/bspatch.diff");
     static File archivePatchFileToStream = new File("app/files/archive-patch-out-to-stream.diff");
     static File bsPatchFileToFile = new File("app/files/bs-patch-out-to-file.diff");
-    static File bsPatchFileToStream = new File("app/files/archivepatch.diff");
+    static File bsPatchFileToStream = new File("app/files/archivepatch-out-to-stream.diff");
+
+    static File totalFileToFile = new File("app/files/total-out-to-file.diff");
+    static File totalFileToStream = new File("app/files/total-out-to-stream.diff");
 
 
     @Test
@@ -111,6 +114,50 @@ public class CoreGeneratorTest {
         } finally {
             long end = System.currentTimeMillis();
             System.out.println("testGenerateArchivePatchOutToStream time:" + (end - start));
+        }
+    }
+
+    @Test
+    public void testGenerateTotalOutToFile() throws GeneratorException {
+        long start = System.currentTimeMillis();
+        Generator generator = CoreGenerator.getInstance().getGenerator(CoreGeneratorType.TOTAL);
+        try {
+            generator.generate(oldFile, newFile, totalFileToFile);
+            Assert.assertTrue(totalFileToFile.exists());
+            Assert.assertTrue(totalFileToFile.length() > 0);
+            String md5 = generator.calculateMD5(totalFileToFile);
+            System.out.println("md5:" + md5);
+            Assert.assertNotNull(md5);
+        } catch (GeneratorException e) {
+            e.printStackTrace();
+            throw e;
+        } finally {
+            long end = System.currentTimeMillis();
+            System.out.println("testGenerateTotalOutToFile time:" + (end - start));
+        }
+
+    }
+
+    @Test
+    public void testGenerateTotalOutToStream() throws GeneratorException, FileNotFoundException {
+        long start = System.currentTimeMillis();
+        Generator generator = CoreGenerator.getInstance().getGenerator(CoreGeneratorType.TOTAL);
+        try {
+            generator.generate(oldFile, newFile, new FileOutputStream(totalFileToStream));
+            Assert.assertTrue(totalFileToStream.exists());
+            Assert.assertTrue(totalFileToStream.length() > 0);
+            String md5 = generator.calculateMD5(totalFileToStream);
+            System.out.println("md5:" + md5);
+            Assert.assertNotNull(md5);
+        } catch (GeneratorException e) {
+            e.printStackTrace();
+            throw e;
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            throw e;
+        } finally {
+            long end = System.currentTimeMillis();
+            System.out.println("testGenerateTotalOutToStream time:" + (end - start));
         }
     }
 }

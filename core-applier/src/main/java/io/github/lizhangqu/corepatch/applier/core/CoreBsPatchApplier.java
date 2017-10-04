@@ -24,7 +24,7 @@ final class CoreBsPatchApplier extends CoreAbsApplier {
 
 
     @Override
-    protected void applyPatch(File oldFile, OutputStream newOutputStream, InflaterInputStream patchInflaterInputStream) throws Exception {
+    protected void applyPatch(File oldFile, InflaterInputStream patchInflaterInputStream, OutputStream newOutputStream) throws Exception {
         RandomAccessFile oldRandomAccessFile = new RandomAccessFile(oldFile, "r");
         try {
             BsPatch.applyPatch(oldRandomAccessFile, newOutputStream, patchInflaterInputStream);
