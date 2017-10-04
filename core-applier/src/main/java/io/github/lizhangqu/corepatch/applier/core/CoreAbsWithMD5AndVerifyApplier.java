@@ -18,7 +18,7 @@ import io.github.lizhangqu.corepatch.applier.ApplierException;
  * @version V1.0
  * @since 2017-10-04 10:40
  */
-public abstract class CoreAbsWithMD5AndVerifyApplier implements Applier {
+abstract class CoreAbsWithMD5AndVerifyApplier implements Applier {
 
     private String getFileMD5(File file) {
         if (file == null || !file.exists() || !file.isFile()) {

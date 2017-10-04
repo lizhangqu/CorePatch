@@ -8,12 +8,9 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.nio.ByteBuffer;
 import java.nio.channels.Channels;
-import java.nio.channels.FileChannel;
 import java.nio.channels.ReadableByteChannel;
 import java.nio.channels.WritableByteChannel;
-import java.util.zip.InflaterInputStream;
 
-import io.github.lizhangqu.corepatch.applier.Applier;
 import io.github.lizhangqu.corepatch.applier.ApplierException;
 
 /**
