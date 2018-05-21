@@ -4,7 +4,7 @@ apply plugin: 'java'
 
 dependencies {
     testImplementation "junit:junit:${global_junitVersion}"
-    compileOnly project(':archive-patch-shared')
+    implementation project(':archive-patch-shared')
 }
 
 apply plugin: 'core.publish'
