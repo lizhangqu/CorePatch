@@ -3,8 +3,8 @@ apply plugin: 'java'
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testImplementation "junit:junit:${global_junitVersion}"
-    implementation project(':api-generator')
-    implementation project(':archive-patch-generator')
+    implementation project(':corepatch-api-applier')
+    implementation project(':archive-patch-applier')
     implementation project(':archive-patch-shared')
 }
 
