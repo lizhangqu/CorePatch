@@ -5,7 +5,7 @@ version 1.0.0
  - support google archive patch
 
  
-version 1.0.1
+version 1.0.2
 -------------
 
  - support total file without diff

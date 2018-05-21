@@ -23,9 +23,9 @@ To run the test cases, simply clone this repository, use android studio to compi
 ```
 dependencies {
     //for generator
-    compile "io.github.lizhangqu:corepatch-core-generator:1.0.1"
+    compile "io.github.lizhangqu:corepatch-core-generator:1.0.2"
     //for applier
-    compile "io.github.lizhangqu:corepatch-core-applier:1.0.1"
+    compile "io.github.lizhangqu:corepatch-core-applier:1.0.2"
 }
 ```
 
@@ -37,7 +37,7 @@ dependencies {
     <dependency>
       <groupId>io.github.lizhangqu</groupId>
       <artifactId>corepatch-core-generator</artifactId>
-      <version>1.0.1</version>
+      <version>1.0.2</version>
     </dependency>
 </dependencies>
 
@@ -46,7 +46,7 @@ dependencies {
     <dependency>
       <groupId>io.github.lizhangqu</groupId>
       <artifactId>corepatch-core-applier</artifactId>
-      <version>1.0.1</version>
+      <version>1.0.2</version>
     </dependency>
 </dependencies>
 ```
