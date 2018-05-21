@@ -2,8 +2,8 @@ ext {
     //java
     global_javaVersion = JavaVersion.VERSION_1_7
     //build
-    global_compileSdkVersion = 26
-    global_buildToolsVersion = "26.0.1"
+    global_compileSdkVersion = 27
+    global_buildToolsVersion = "27.0.3"
     global_minSdkVersion = 14
     global_targetSdkVersion = 26
     //android library
