@@ -7,4 +7,4 @@ dependencies {
     compileOnly project(':archive-patch-shared')
 }
 
-apply from: project.rootProject.file('gradle/artifact_release.gradle')
+apply plugin: 'core.publish'

@@ -5,4 +5,4 @@ dependencies {
     testImplementation "junit:junit:${global_junitVersion}"
 }
 
-apply from: project.rootProject.file('gradle/artifact_release.gradle')
+apply plugin: 'core.publish'

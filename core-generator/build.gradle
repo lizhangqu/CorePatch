@@ -6,10 +6,6 @@ dependencies {
     compileOnly project(':api-generator')
     compileOnly project(':archive-patch-generator')
     compileOnly project(':archive-patch-shared')
-
-//    compile "com.google.archivepatcher:archive-patch-shared:1.0.0"
-//    compile "com.google.archivepatcher:archive-patch-generator:1.0.0"
-//    compile "io.github.lizhangqu:corepatch-api-generator:1.0.0"
 }
 
-apply from: project.rootProject.file('gradle/artifact_release.gradle')
+apply plugin: 'core.publish'
